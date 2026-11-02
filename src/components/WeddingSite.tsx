@@ -51,7 +51,6 @@ function useCountdown(iso: string) {
   }
 }
 
-const ease = [0.22, 1, 0.36, 1] as const
 const FLORAL = "/images/floral-border.webp"
 
 function FloralBand({ flip = false }: { flip?: boolean }) {
