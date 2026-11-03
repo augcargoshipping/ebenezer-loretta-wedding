@@ -10,11 +10,9 @@ import {
   GIFTS,
   HASHTAG,
   HERO_TAGLINE,
-  HOST,
   WELCOME_CLOSE,
   PARTY,
   PHOTOS,
-  RSVP_CONTACTS,
   STORY,
   WEDDING_DATES,
 } from "@/lib/constants"
@@ -26,7 +24,33 @@ import {
   ScrollProgress,
   SectionNav,
 } from "./SiteExtras"
+import { InvitationOpener } from "./InvitationOpener"
+import { RsvpSection } from "./RsvpSection"
 import { Bells, Bouquet, Cake, Dove, Envelope, Flutes, HeartSeal, Rings, ScrollMotif } from "./WeddingMotifs"
+
+function FooterName() {
+  const tapCount = useRef(0)
+  const tapTimer = useRef<number | null>(null)
+
+  const handleTap = () => {
+    tapCount.current += 1
+    if (tapTimer.current !== null) window.clearTimeout(tapTimer.current)
+    tapTimer.current = window.setTimeout(() => {
+      tapCount.current = 0
+    }, 900)
+
+    if (tapCount.current < 3) return
+    tapCount.current = 0
+    document.querySelector("audio")?.pause()
+    window.open("/admin/rsvp", "_blank", "noopener,noreferrer")
+  }
+
+  return (
+    <button type="button" className="footer-name script relative z-10" onClick={handleTap}>
+      {COUPLE.full}
+    </button>
+  )
+}
 
 function useCountdown(iso: string) {
   const target = useMemo(() => new Date(iso).getTime(), [iso])
@@ -73,6 +97,7 @@ export function WeddingSite() {
     offset: ["start start", "end start"],
   })
   const bgY = useTransform(scrollYProgress, [0, 1], reduced ? [0, 0] : [0, 70])
+  const [sealed, setSealed] = useState(true)
   const count = useCountdown(WEDDING_DATES.countdown)
   const tiles = [
     { label: "Days", value: count.days },
@@ -83,9 +108,10 @@ export function WeddingSite() {
 
   return (
     <main style={{ background: "#f6eadc", color: "#2c241c" }}>
+      {sealed ? <InvitationOpener reduced={reduced} onDone={() => setSealed(false)} /> : null}
       <ScrollProgress />
       <SectionNav />
-      <MusicButton />
+      <MusicButton audible={!sealed} />
 
       <section id="home" ref={heroRef} className="hero-banner relative isolate overflow-hidden text-center">
         <div className="hero-scene" aria-hidden="true">
@@ -110,6 +136,8 @@ export function WeddingSite() {
           </p>
           <p className="hero-date">{WEDDING_DATES.display}</p>
           <p className="script hero-until">Until we say I do</p>
+        </div>
+        <div className="hero-couple">
           <div className="countdown-board">
             {tiles.map((item) => (
               <div key={item.label} className="countdown-cell">
@@ -120,9 +148,9 @@ export function WeddingSite() {
               </div>
             ))}
           </div>
-        </div>
-        <div className="hero-couple" aria-hidden="true">
-          <img src={`${PHOTOS.heroCutout}?v=5`} alt="" />
+          <div className="hero-couple-shot">
+            <img src={`${PHOTOS.heroCutout}?v=5`} alt="" />
+          </div>
         </div>
       </section>
 
@@ -267,41 +295,7 @@ export function WeddingSite() {
         </div>
       </section>
 
-      <section id="rsvp" className="relative overflow-hidden px-6 py-20 text-center" style={{ background: "#1d2a3a", color: "#f6eadc" }}>
-        <ScrollMotif className="top-6 left-2 w-12 text-[#e4c98a] opacity-50 md:left-12 md:w-16" drift={22} spin={12}>
-          <Rings />
-        </ScrollMotif>
-        <ScrollMotif className="right-2 bottom-8 w-12 text-[#e4c98a] opacity-45 md:right-14 md:w-16" drift={-18} spin={-10}>
-          <HeartSeal />
-        </ScrollMotif>
-        <p className="ornament relative z-10 text-[10px] uppercase">Kindly reply</p>
-        <h2 className="serif relative z-10 mt-3 text-4xl">RSVP</h2>
-        <p className="relative z-10 mx-auto mt-4 max-w-md text-sm" style={{ color: "rgba(246,234,220,0.78)" }}>
-          Please let Miriam, Daniel, or Solo know if you will celebrate with us.
-        </p>
-        <div className="relative z-10 mx-auto mt-10 grid max-w-lg gap-3">
-          {RSVP_CONTACTS.map((person) => (
-            <a
-              key={person.name}
-              href={`https://wa.me/${person.tel.replace("+", "")}?text=${encodeURIComponent(person.message)}`}
-              className="rounded-2xl px-5 py-4"
-              style={{ border: "1px solid rgba(228,201,138,0.35)" }}
-            >
-              <p className="serif text-xl">{person.name}</p>
-              <p className="mt-1 text-sm" style={{ color: "#e4c98a" }}>
-                {person.phone}
-              </p>
-            </a>
-          ))}
-        </div>
-        <a
-          href={`https://wa.me/${HOST.tel.replace("+", "")}?text=${encodeURIComponent("Hello! I would like to RSVP for Ebenezer & Loretta's wedding.")}`}
-          className="relative z-10 mt-8 inline-flex rounded-full px-8 py-3 text-xs font-semibold tracking-[0.2em] uppercase"
-          style={{ background: "#b8944a", color: "#1d2a3a" }}
-        >
-          Message Ebenezer
-        </a>
-      </section>
+      <RsvpSection />
 
       <footer className="relative overflow-hidden px-6 pt-16 pb-14 text-center">
         <ScrollMotif className="top-3 left-3 w-9 opacity-75 md:left-[18%] md:w-12" drift={10} spin={12}>
@@ -310,7 +304,7 @@ export function WeddingSite() {
         <ScrollMotif className="top-2 right-3 w-8 opacity-75 md:right-[18%] md:w-11" drift={-8} spin={-10}>
           <Bouquet />
         </ScrollMotif>
-        <p className="script relative z-10 text-3xl text-[#1d2a3a]">{COUPLE.full}</p>
+        <FooterName />
         <p className="relative z-10 mt-2 text-xs tracking-[0.2em] text-[#6d6258] uppercase">
           {WEDDING_DATES.short} · Halifax · {HASHTAG}
         </p>

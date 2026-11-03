@@ -67,7 +67,7 @@ export function ScrollProgress() {
   )
 }
 
-export function MusicButton() {
+export function MusicButton({ audible = true }: { audible?: boolean }) {
   const audioRef = useRef<HTMLAudioElement>(null)
   const pendingRef = useRef(false)
   const [isPlaying, setIsPlaying] = useState(false)
@@ -118,26 +118,42 @@ export function MusicButton() {
       void audio.play()
     }
 
+    audio.volume = 0
     audio.addEventListener("play", onPlay)
     audio.addEventListener("pause", onPause)
     audio.addEventListener("ended", onEnded)
 
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches
-    if (!reduced) play()
-
-    const unlock = () => play()
-    window.addEventListener("pointerdown", unlock, { once: true })
-    window.addEventListener("keydown", unlock, { once: true })
+    const cue = () => {
+      audio.volume = 0
+      play()
+    }
+    window.addEventListener("invitation-cue", cue)
 
     return () => {
       audio.removeEventListener("play", onPlay)
       audio.removeEventListener("pause", onPause)
       audio.removeEventListener("ended", onEnded)
-      window.removeEventListener("pointerdown", unlock)
-      window.removeEventListener("keydown", unlock)
+      window.removeEventListener("invitation-cue", cue)
       audio.pause()
     }
   }, [play])
+
+  useEffect(() => {
+    const audio = audioRef.current
+    if (!audio || !audible) return
+
+    const started = performance.now()
+    let frame = 0
+    const tick = (now: number) => {
+      const progress = Math.max(0, Math.min(1, (now - started) / 900))
+      audio.volume = progress
+      if (progress < 1) frame = window.requestAnimationFrame(tick)
+    }
+    frame = window.requestAnimationFrame(tick)
+    if (audio.paused) play()
+
+    return () => window.cancelAnimationFrame(frame)
+  }, [audible, play])
 
   return (
     <>
