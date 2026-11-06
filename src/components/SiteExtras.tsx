@@ -31,16 +31,16 @@ export function SectionNav() {
     <nav
       className={`fixed top-0 right-0 left-0 z-50 flex justify-center px-3 transition-all duration-300 ${
         scrolled
-          ? "translate-y-0 py-2 opacity-100 md:border-b md:border-[rgba(184,148,74,0.18)] md:bg-[rgba(246,234,220,0.92)] md:py-3 md:backdrop-blur-md"
+          ? "translate-y-0 py-2 opacity-100 md:border-b md:border-[rgba(123,63,166,0.18)] md:bg-[rgba(250,248,246,0.94)] md:py-3 md:backdrop-blur-md"
           : "pointer-events-none -translate-y-2 py-2 opacity-0 md:pointer-events-auto md:translate-y-0 md:bg-transparent md:py-3 md:opacity-100"
       }`}
     >
-      <div className="flex max-w-full gap-0.5 overflow-x-auto rounded-full bg-[rgba(248,239,227,0.92)] px-0.5 py-0.5 shadow-[0_6px_16px_rgba(44,36,28,0.08)] backdrop-blur-md md:gap-1 md:bg-transparent md:px-1 md:py-1 md:shadow-none md:backdrop-blur-none">
+      <div className="flex max-w-full gap-0.5 overflow-x-auto rounded-full bg-[rgba(250,248,246,0.96)] px-0.5 py-0.5 shadow-[0_6px_16px_rgba(46,26,64,0.08)] backdrop-blur-md md:gap-1 md:bg-transparent md:px-1 md:py-1 md:shadow-none md:backdrop-blur-none">
         {NAV.map((item) => (
           <a
             key={item.href}
             href={item.href}
-            className="shrink-0 rounded-full px-2 py-1 text-[8px] font-semibold tracking-[0.12em] text-[#1d2a3a] uppercase md:px-3 md:py-1.5 md:text-[10px] md:tracking-[0.14em]"
+            className="shrink-0 rounded-full px-2 py-1 text-[8px] font-semibold tracking-[0.12em] text-[#3d215c] uppercase md:px-3 md:py-1.5 md:text-[10px] md:tracking-[0.14em]"
           >
             {item.label}
           </a>
@@ -62,7 +62,7 @@ export function ScrollProgress() {
   }, [])
   return (
     <div className="pointer-events-none fixed top-0 right-0 left-0 z-[60] h-0.5">
-      <div className="h-full bg-[#b8944a]" style={{ width: `${width}%` }} />
+      <div className="h-full bg-[#7b3fa6]" style={{ width: `${width}%` }} />
     </div>
   )
 }
@@ -161,8 +161,8 @@ export function MusicButton({ audible = true }: { audible?: boolean }) {
       <button
         type="button"
         onClick={() => (isPlaying ? pause() : play())}
-        className="fixed right-4 bottom-4 z-[70] flex h-12 w-12 items-center justify-center rounded-full text-[#1d2a3a] shadow-lg"
-        style={{ background: "#f6eadc", border: "1px solid rgba(184,148,74,0.4)" }}
+        className="fixed right-4 bottom-4 z-[70] flex h-12 w-12 items-center justify-center rounded-full text-[#3d215c] shadow-lg"
+        style={{ background: "#faf8f6", border: "1px solid rgba(123,63,166,0.4)" }}
         aria-label={isPlaying ? "Mute background music" : "Play background music"}
       >
         {isPlaying ? <VolumeX className="h-4 w-4" /> : <Music className="h-4 w-4" />}
@@ -184,11 +184,11 @@ export function CopyEmail({ email, label }: { email: string; label: string }) {
       className="card-invite flex w-full items-center justify-between rounded-2xl px-5 py-4 text-left text-sm"
     >
       <span>
-        <span className="tracking-[0.16em] text-[#6d6258] uppercase">{label}</span>
-        <p className="mt-1 font-medium text-[#1d2a3a]">{email}</p>
-        <p className="mt-1 text-[10px] tracking-[0.12em] text-[#b8944a] uppercase">{copied ? "Copied" : "Tap to copy"}</p>
+        <span className="tracking-[0.16em] text-[#6a5680] uppercase">{label}</span>
+        <p className="mt-1 font-medium text-[#3d215c]">{email}</p>
+        <p className="mt-1 text-[10px] tracking-[0.12em] text-[#7b3fa6] uppercase">{copied ? "Copied" : "Tap to copy"}</p>
       </span>
-      <Copy className="h-4 w-4 text-[#b8944a]" />
+      <Copy className="h-4 w-4 text-[#7b3fa6]" />
     </button>
   )
 }
@@ -197,9 +197,9 @@ export function AddToCalendar() {
   const google =
     "https://calendar.google.com/calendar/render?action=TEMPLATE&text=" +
     encodeURIComponent("Ebenezer & Loretta Wedding") +
-    "&dates=20261129T143000Z/20261129T200000Z" +
+    "&dates=20261129T133000Z/20261130T000000Z" +
     "&details=" +
-    encodeURIComponent("White Wedding 10:30 AM ATL at Elevate Community Church, then reception at 2:00 PM.") +
+    encodeURIComponent("White Wedding at 9:30 AM at Scotiabank Theatre. The program is upstairs: when you walk in, the stairs are on your right. Reception at 11:00 AM at House.") +
     "&location=" +
     encodeURIComponent("190 Chain Lake Dr, Halifax, NS B3S 1C5")
   return (
@@ -207,7 +207,7 @@ export function AddToCalendar() {
       <a
         href="/ebenezer-loretta.ics"
         className="inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-[10px] font-semibold tracking-[0.16em] uppercase"
-        style={{ border: "1px solid rgba(184,148,74,0.4)", color: "#1d2a3a" }}
+        style={{ border: "1px solid rgba(123,63,166,0.45)", color: "#3d215c" }}
       >
         <Calendar className="h-3.5 w-3.5" />
         Apple / Outlook
@@ -216,8 +216,8 @@ export function AddToCalendar() {
         href={google}
         target="_blank"
         rel="noreferrer"
-        className="inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-[10px] font-semibold tracking-[0.16em] text-[#1d2a3a] uppercase"
-        style={{ background: "#e4c98a" }}
+        className="inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-[10px] font-semibold tracking-[0.16em] text-[#fbf7ff] uppercase"
+        style={{ background: "#7b3fa6" }}
       >
         <Calendar className="h-3.5 w-3.5" />
         Google Calendar

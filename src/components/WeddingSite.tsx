@@ -79,7 +79,7 @@ const FLORAL = "/images/floral-border.webp"
 
 function FloralBand({ flip = false }: { flip?: boolean }) {
   return (
-    <div className="pointer-events-none relative mx-auto h-16 w-full max-w-4xl overflow-hidden md:h-20" aria-hidden="true">
+    <div className="floral-band pointer-events-none relative mx-auto h-16 w-full max-w-4xl overflow-hidden md:h-20" aria-hidden="true">
       <img
         src={FLORAL}
         alt=""
@@ -107,7 +107,7 @@ export function WeddingSite() {
   ]
 
   return (
-    <main style={{ background: "#f6eadc", color: "#2c241c" }}>
+    <main className="page-wash">
       {sealed ? <InvitationOpener reduced={reduced} onDone={() => setSealed(false)} /> : null}
       <ScrollProgress />
       <SectionNav />
@@ -154,30 +154,30 @@ export function WeddingSite() {
         </div>
       </section>
 
-      <section id="story" className="relative overflow-hidden px-6 py-16">
+      <section id="story" className="paper relative overflow-hidden px-6 py-16">
         <ScrollMotif className="top-3 right-2 hidden w-16 opacity-80 md:block" drift={22} spin={16}>
           <Dove />
         </ScrollMotif>
         <div className="relative z-10 mx-auto grid max-w-4xl items-center gap-10 md:grid-cols-2">
-          <div className="overflow-hidden rounded-[1.6rem] border border-[rgba(184,148,74,0.28)] shadow-[0_18px_40px_rgba(44,36,28,0.08)]">
+          <div className="order-2 overflow-hidden rounded-[1.6rem] border border-[rgba(123,63,166,0.28)] shadow-[0_18px_40px_rgba(46,26,64,0.08)] md:order-1">
             <img src={PHOTOS.story} alt={`${COUPLE.full}`} className="block h-auto w-full object-cover" />
           </div>
-          <div className="text-center md:text-left">
+          <div className="order-1 text-center md:order-2 md:text-left">
             <div className="mb-3 flex justify-center md:justify-start">
               <ScrollMotif flow className="w-14 md:w-16" drift={16} spin={14}>
                 <Rings />
               </ScrollMotif>
             </div>
             <p className="ornament text-[10px] uppercase">Our story</p>
-            <h2 className="serif mt-3 text-4xl text-[#1d2a3a]">Written in prayer</h2>
-            <div className="mt-8 space-y-4 text-base leading-relaxed text-[#6d6258] whitespace-pre-line">{STORY}</div>
+            <h2 className="serif mt-3 text-4xl text-[#3d215c]">Written in prayer</h2>
+            <div className="mt-8 space-y-4 text-base leading-relaxed text-[#6a5680] whitespace-pre-line">{STORY}</div>
           </div>
         </div>
       </section>
 
       <FloralBand />
 
-      <section id="schedule" className="relative overflow-hidden px-6 py-16" style={{ background: "#edd9c2" }}>
+      <section id="schedule" className="band-wash relative overflow-hidden px-6 py-16">
         <ScrollMotif className="top-14 left-0 w-12 opacity-80 md:top-4 md:left-6 md:w-20" drift={18} spin={-12}>
           <Bells />
         </ScrollMotif>
@@ -186,30 +186,31 @@ export function WeddingSite() {
         </ScrollMotif>
         <div className="relative z-10 mx-auto max-w-4xl">
           <p className="ornament text-center text-[10px] uppercase">The celebration</p>
-          <h2 className="serif mt-3 text-center text-4xl text-[#1d2a3a]">Schedule</h2>
+          <h2 className="serif mt-3 text-center text-4xl text-[#3d215c]">Schedule</h2>
           <div className="mt-12 grid gap-6 md:grid-cols-2">
             {EVENTS.map((event) => (
               <article key={event.id} className="card-invite rounded-3xl p-8">
                 <div
                   className="flex h-12 w-12 items-center justify-center rounded-full"
-                  style={{ border: "1px solid rgba(184,148,74,0.35)", color: "#b8944a" }}
+                  style={{ border: "1px solid rgba(123,63,166,0.35)", color: "#7b3fa6" }}
                 >
                   {event.id === "ceremony" ? <Church className="h-5 w-5" /> : <Sparkles className="h-5 w-5" />}
                 </div>
-                <h3 className="serif mt-5 text-2xl text-[#1d2a3a]">{event.title}</h3>
-                <p className="mt-2 text-sm tracking-wide text-[#b8944a] uppercase">{event.time}</p>
-                <p className="mt-1 text-sm text-[#6d6258]">{event.date}</p>
-                <p className="mt-5 font-medium text-[#2c241c]">{event.venue}</p>
-                <p className="text-sm text-[#6d6258]">{event.place}</p>
-                <p className="mt-2 flex items-start gap-2 text-sm text-[#6d6258]">
-                  <MapPin className="mt-0.5 h-4 w-4 shrink-0" style={{ color: "#b8944a" }} />
+                <h3 className="serif mt-5 text-2xl text-[#3d215c]">{event.title}</h3>
+                <p className="mt-2 text-sm tracking-wide text-[#7b3fa6] uppercase">{event.time}</p>
+                <p className="mt-1 text-sm text-[#6a5680]">{event.date}</p>
+                <p className="mt-5 font-medium text-[#2e1a40]">{event.venue}</p>
+                {event.place ? <p className="text-sm text-[#6a5680]">{event.place}</p> : null}
+                {event.note ? <p className="mt-3 text-sm leading-relaxed text-[#6a5680]">{event.note}</p> : null}
+                <p className="mt-2 flex items-start gap-2 text-sm text-[#6a5680]">
+                  <MapPin className="mt-0.5 h-4 w-4 shrink-0" style={{ color: "#7b3fa6" }} />
                   {event.address}
                 </p>
                 <a
                   href={event.mapsUrl}
                   target="_blank"
                   rel="noreferrer"
-                  className="mt-5 inline-block text-xs font-semibold tracking-[0.16em] text-[#1d2a3a] uppercase underline underline-offset-4"
+                  className="mt-5 inline-block text-xs font-semibold tracking-[0.16em] text-[#3d215c] uppercase underline underline-offset-4"
                 >
                   Open in Maps
                 </a>
@@ -225,9 +226,9 @@ export function WeddingSite() {
             ))}
           </div>
           <div className="card-invite mx-auto mt-8 max-w-xl rounded-3xl p-6 text-center">
-            <Shirt className="mx-auto h-5 w-5" style={{ color: "#b8944a" }} />
-            <p className="mt-3 text-[11px] tracking-[0.2em] text-[#6d6258] uppercase">Dress code</p>
-            <p className="serif mt-1 text-2xl text-[#1d2a3a]">{DRESS_CODE}</p>
+            <Shirt className="mx-auto h-5 w-5" style={{ color: "#7b3fa6" }} />
+            <p className="mt-3 text-[11px] tracking-[0.2em] text-[#6a5680] uppercase">Dress code</p>
+            <p className="serif mt-1 text-2xl text-[#3d215c]">{DRESS_CODE}</p>
           </div>
           <AddToCalendar />
         </div>
@@ -244,12 +245,12 @@ export function WeddingSite() {
         </ScrollMotif>
         <div className="relative z-10 mx-auto max-w-3xl text-center">
           <p className="ornament text-[10px] uppercase">Standing with us</p>
-          <h2 className="serif mt-3 text-4xl text-[#1d2a3a]">Wedding party</h2>
+          <h2 className="serif mt-3 text-4xl text-[#3d215c]">Wedding party</h2>
           <div className="mt-10 grid gap-6 sm:grid-cols-2">
             {PARTY.map((person) => (
               <div key={person.name} className="card-invite rounded-3xl px-6 py-8">
-                <p className="serif text-2xl text-[#1d2a3a]">{person.name}</p>
-                <p className="mt-1 text-xs tracking-[0.18em] text-[#6d6258] uppercase">{person.role}</p>
+                <p className="serif text-2xl text-[#3d215c]">{person.name}</p>
+                <p className="mt-1 text-xs tracking-[0.18em] text-[#6a5680] uppercase">{person.role}</p>
               </div>
             ))}
           </div>
@@ -258,7 +259,7 @@ export function WeddingSite() {
 
       <FloralBand />
 
-      <section id="gallery" className="relative overflow-hidden px-4 py-16 md:px-6" style={{ background: "#edd9c2" }}>
+      <section id="gallery" className="band-wash relative overflow-hidden px-4 py-16 md:px-6">
         <ScrollMotif className="top-14 left-1 w-12 opacity-80 md:top-6 md:left-8 md:w-20" drift={16} spin={-8}>
           <Bouquet />
         </ScrollMotif>
@@ -267,8 +268,8 @@ export function WeddingSite() {
         </ScrollMotif>
         <div className="relative z-10 mx-auto max-w-5xl text-center">
           <p className="ornament text-[10px] uppercase">Gallery</p>
-          <h2 className="serif mt-3 text-4xl text-[#1d2a3a]">Our photographs</h2>
-          <p className="mt-4 text-sm text-[#6d6258]">A few of our favorite frames.</p>
+          <h2 className="serif mt-3 text-4xl text-[#3d215c]">Our photographs</h2>
+          <p className="mt-4 text-sm text-[#6a5680]">A few of our favorite frames.</p>
           <PhotoLightbox />
         </div>
       </section>
@@ -283,8 +284,8 @@ export function WeddingSite() {
           <Rings />
         </ScrollMotif>
         <div className="relative z-10 mx-auto max-w-xl text-center">
-          <h2 className="serif text-4xl text-[#1d2a3a]">Gifts</h2>
-          <p className="mt-3 text-sm leading-relaxed text-[#6d6258]">
+          <h2 className="serif text-4xl text-[#3d215c]">Gifts</h2>
+          <p className="mt-3 text-sm leading-relaxed text-[#6a5680]">
             Your presence is the gift. If you wish to bless us further, Interac e-Transfer is welcome.
           </p>
           <div className="mt-8 space-y-3">
@@ -297,7 +298,7 @@ export function WeddingSite() {
 
       <RsvpSection />
 
-      <footer className="relative overflow-hidden px-6 pt-16 pb-14 text-center">
+      <footer className="paper relative overflow-hidden px-6 pt-16 pb-14 text-center">
         <ScrollMotif className="top-3 left-3 w-9 opacity-75 md:left-[18%] md:w-12" drift={10} spin={12}>
           <Rings />
         </ScrollMotif>
@@ -305,7 +306,7 @@ export function WeddingSite() {
           <Bouquet />
         </ScrollMotif>
         <FooterName />
-        <p className="relative z-10 mt-2 text-xs tracking-[0.2em] text-[#6d6258] uppercase">
+        <p className="relative z-10 mt-2 text-xs tracking-[0.2em] text-[#6a5680] uppercase">
           {WEDDING_DATES.short} · Halifax · {HASHTAG}
         </p>
       </footer>

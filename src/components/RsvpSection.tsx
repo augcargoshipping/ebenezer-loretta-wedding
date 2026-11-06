@@ -7,32 +7,32 @@ import { X } from "lucide-react"
 import { COUPLE, RSVP_CONTACTS, WEDDING_DATES } from "@/lib/constants"
 
 const SPLASH = [
-  { x: "-46vw", y: "-36vh", r: -140, d: 0, s: 54, c: "#f27ca2", kind: "bloom" },
-  { x: "42vw", y: "-32vh", r: 110, d: 0.02, s: 48, c: "#e7a0e0", kind: "bloom" },
-  { x: "8vw", y: "-44vh", r: 30, d: 0.04, s: 36, c: "#f6c14d", kind: "bloom" },
-  { x: "-18vw", y: "-28vh", r: -40, d: 0, s: 28, c: "#ff8f7a", kind: "petal" },
-  { x: "24vw", y: "-18vh", r: 70, d: 0.03, s: 32, c: "#c9a4f2", kind: "petal" },
-  { x: "-38vw", y: "-8vh", r: -90, d: 0.05, s: 44, c: "#ffb4c8", kind: "bloom" },
-  { x: "40vw", y: "6vh", r: 130, d: 0.02, s: 40, c: "#f08a6a", kind: "bloom" },
-  { x: "-8vw", y: "34vh", r: 20, d: 0.06, s: 50, c: "#e48ad4", kind: "bloom" },
-  { x: "16vw", y: "40vh", r: -60, d: 0.04, s: 30, c: "#f2d36b", kind: "petal" },
-  { x: "-28vw", y: "22vh", r: 80, d: 0.01, s: 38, c: "#ff9eb5", kind: "bloom" },
-  { x: "32vw", y: "-40vh", r: -20, d: 0.07, s: 26, c: "#b9e0a5", kind: "petal" },
-  { x: "-48vw", y: "16vh", r: 150, d: 0.03, s: 34, c: "#f7b267", kind: "bloom" },
+  { x: "-46vw", y: "-36vh", r: -140, d: 0, s: 54, c: "#c084fc", kind: "bloom" },
+  { x: "42vw", y: "-32vh", r: 110, d: 0.02, s: 48, c: "#e9d5ff", kind: "bloom" },
+  { x: "8vw", y: "-44vh", r: 30, d: 0.04, s: 36, c: "#a855f7", kind: "bloom" },
+  { x: "-18vw", y: "-28vh", r: -40, d: 0, s: 28, c: "#d8b4fe", kind: "petal" },
+  { x: "24vw", y: "-18vh", r: 70, d: 0.03, s: 32, c: "#c4b5fd", kind: "petal" },
+  { x: "-38vw", y: "-8vh", r: -90, d: 0.05, s: 44, c: "#f0abfc", kind: "bloom" },
+  { x: "40vw", y: "6vh", r: 130, d: 0.02, s: 40, c: "#a78bfa", kind: "bloom" },
+  { x: "-8vw", y: "34vh", r: 20, d: 0.06, s: 50, c: "#e879f9", kind: "bloom" },
+  { x: "16vw", y: "40vh", r: -60, d: 0.04, s: 30, c: "#ddd6fe", kind: "petal" },
+  { x: "-28vw", y: "22vh", r: 80, d: 0.01, s: 38, c: "#c084fc", kind: "bloom" },
+  { x: "32vw", y: "-40vh", r: -20, d: 0.07, s: 26, c: "#d8b4fe", kind: "petal" },
+  { x: "-48vw", y: "16vh", r: 150, d: 0.03, s: 34, c: "#9333ea", kind: "bloom" },
   { x: "48vw", y: "24vh", r: -100, d: 0.05, s: 42, c: "#d98bff", kind: "bloom" },
-  { x: "0vw", y: "-16vh", r: 15, d: 0, s: 58, c: "#ff7aa2", kind: "bloom" },
-  { x: "-12vw", y: "8vh", r: -30, d: 0.02, s: 24, c: "#ffe07a", kind: "petal" },
-  { x: "14vw", y: "-6vh", r: 45, d: 0.04, s: 22, c: "#ffb0d0", kind: "petal" },
-  { x: "-34vw", y: "-40vh", r: 100, d: 0.06, s: 30, c: "#f29ad0", kind: "bloom" },
-  { x: "28vw", y: "32vh", r: -80, d: 0.03, s: 36, c: "#ffc1a1", kind: "bloom" },
-  { x: "-22vw", y: "40vh", r: 40, d: 0.08, s: 28, c: "#c7e39a", kind: "petal" },
-  { x: "6vw", y: "18vh", r: -15, d: 0.01, s: 20, c: "#f6d36b", kind: "dot" },
-  { x: "-6vw", y: "-12vh", r: 25, d: 0.05, s: 18, c: "#ff8fb3", kind: "dot" },
+  { x: "0vw", y: "-16vh", r: 15, d: 0, s: 58, c: "#a855f7", kind: "bloom" },
+  { x: "-12vw", y: "8vh", r: -30, d: 0.02, s: 24, c: "#e9d5ff", kind: "petal" },
+  { x: "14vw", y: "-6vh", r: 45, d: 0.04, s: 22, c: "#f5d0fe", kind: "petal" },
+  { x: "-34vw", y: "-40vh", r: 100, d: 0.06, s: 30, c: "#c4b5fd", kind: "bloom" },
+  { x: "28vw", y: "32vh", r: -80, d: 0.03, s: 36, c: "#e879f9", kind: "bloom" },
+  { x: "-22vw", y: "40vh", r: 40, d: 0.08, s: 28, c: "#ddd6fe", kind: "petal" },
+  { x: "6vw", y: "18vh", r: -15, d: 0.01, s: 20, c: "#a78bfa", kind: "dot" },
+  { x: "-6vw", y: "-12vh", r: 25, d: 0.05, s: 18, c: "#f0abfc", kind: "dot" },
   { x: "36vw", y: "-22vh", r: -50, d: 0.02, s: 22, c: "#e7b0ff", kind: "dot" },
-  { x: "-44vw", y: "32vh", r: 70, d: 0.07, s: 32, c: "#ffd1dc", kind: "petal" },
-  { x: "18vw", y: "-38vh", r: 90, d: 0.04, s: 26, c: "#ffa3c4", kind: "petal" },
-  { x: "-2vw", y: "42vh", r: -25, d: 0.06, s: 40, c: "#f48fb1", kind: "bloom" },
-  { x: "44vw", y: "-8vh", r: 120, d: 0.05, s: 24, c: "#ffe08a", kind: "petal" },
+  { x: "-44vw", y: "32vh", r: 70, d: 0.07, s: 32, c: "#d8b4fe", kind: "petal" },
+  { x: "18vw", y: "-38vh", r: 90, d: 0.04, s: 26, c: "#c084fc", kind: "petal" },
+  { x: "-2vw", y: "42vh", r: -25, d: 0.06, s: 40, c: "#a855f7", kind: "bloom" },
+  { x: "44vw", y: "-8vh", r: 120, d: 0.05, s: 24, c: "#e9d5ff", kind: "petal" },
 ] as const
 
 function hasPhone(phone: string) {
@@ -61,7 +61,7 @@ function SplashPiece({
           <circle cx="23" cy="16" r="6" fill={piece.c} />
           <circle cx="16" cy="22" r="6" fill={piece.c} />
           <circle cx="9" cy="16" r="6" fill={piece.c} />
-          <circle cx="16" cy="16" r="3.2" fill="#b8944a" />
+          <circle cx="16" cy="16" r="3.2" fill="#7b3fa6" />
         </svg>
       ) : (
         <svg viewBox="0 0 20 28" className="h-full w-full">
@@ -164,10 +164,10 @@ export function RsvpSection() {
           <motion.div
             className="rsvp-overlay"
             role="presentation"
-            initial={{ opacity: 0, backgroundColor: "rgba(255, 246, 240, 0.15)" }}
+            initial={{ opacity: 0, backgroundColor: "rgba(244, 232, 255, 0.15)" }}
             animate={{
               opacity: 1,
-              backgroundColor: phase === "form" ? "rgba(90, 62, 54, 0.46)" : "rgba(255, 246, 240, 0.2)",
+              backgroundColor: phase === "form" ? "rgba(62, 32, 96, 0.5)" : "rgba(244, 232, 255, 0.22)",
             }}
             exit={{ opacity: 0 }}
             transition={{ duration: reduced ? 0.01 : 0.35 }}
@@ -193,11 +193,11 @@ export function RsvpSection() {
               </button>
               {sent ? (
                 <div className="rsvp-thanks">
-                  <p className="script text-4xl text-[#b8944a]">With joy</p>
-                  <h3 id={titleId} className="serif mt-2 text-3xl text-[#1d2a3a]">
+                  <p className="script text-4xl text-[#7b3fa6]">With joy</p>
+                  <h3 id={titleId} className="serif mt-2 text-3xl text-[#3d215c]">
                     Thank you, {name.trim().split(" ")[0]}
                   </h3>
-                  <p className="mt-3 text-sm leading-relaxed text-[#6d6258]">
+                  <p className="mt-3 text-sm leading-relaxed text-[#6a5680]">
                     {COUPLE.full} have your reply.
                   </p>
                   <button type="button" className="rsvp-submit" onClick={close}>
@@ -206,8 +206,8 @@ export function RsvpSection() {
                 </div>
               ) : (
                 <form onSubmit={submit}>
-                  <p className="text-[10px] font-semibold tracking-[0.28em] text-[#b8944a] uppercase">Kindly reply</p>
-                  <h3 id={titleId} className="serif mt-2 text-3xl leading-tight text-[#1d2a3a]">
+                  <p className="text-[10px] font-semibold tracking-[0.28em] text-[#7b3fa6] uppercase">Kindly reply</p>
+                  <h3 id={titleId} className="serif mt-2 text-3xl leading-tight text-[#3d215c]">
                     Will you celebrate with us?
                   </h3>
                   <label className="rsvp-label" htmlFor="rsvp-name">
@@ -279,8 +279,8 @@ export function RsvpSection() {
     <section id="rsvp" className="rsvp-section px-6 py-16 text-center">
       <div className="mx-auto max-w-xl">
         <p className="ornament text-[10px] uppercase">Kindly reply</p>
-        <h2 className="serif mt-3 text-4xl text-[#1d2a3a]">Will you come?</h2>
-        <p className="mt-3 text-sm text-[#6d6258]">{WEDDING_DATES.display}</p>
+        <h2 className="serif mt-3 text-4xl text-[#3d215c]">Will you come?</h2>
+        <p className="mt-3 text-sm text-[#6a5680]">{WEDDING_DATES.display}</p>
         <button
           type="button"
           className="rsvp-invite"

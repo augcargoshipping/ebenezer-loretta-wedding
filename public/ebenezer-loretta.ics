@@ -4,17 +4,18 @@ PRODID:-//Ebenezer and Loretta//Wedding//EN
 BEGIN:VEVENT
 UID:ceremony@ebenezerandloretta
 DTSTAMP:20261029T000000Z
-DTSTART;TZID=America/Halifax:20261129T103000
-DTEND;TZID=America/Halifax:20261129T120000
+DTSTART;TZID=America/Halifax:20261129T093000
+DTEND;TZID=America/Halifax:20261129T110000
 SUMMARY:Ebenezer & Loretta — White Wedding
-LOCATION:Elevate Community Church, Scotiabank Theatre, 190 Chain Lake Dr, Halifax, NS B3S 1C5
+LOCATION:Scotiabank Theatre, 190 Chain Lake Dr, Halifax, NS B3S 1C5
+DESCRIPTION:The program will be held in one of the halls upstairs inside the theatre. When you walk in\, the stairs are on your right. Climb upstairs and you'll find us.
 END:VEVENT
 BEGIN:VEVENT
 UID:reception@ebenezerandloretta
 DTSTAMP:20261029T000000Z
-DTSTART;TZID=America/Halifax:20261129T140000
+DTSTART;TZID=America/Halifax:20261129T110000
 DTEND;TZID=America/Halifax:20261129T200000
 SUMMARY:Ebenezer & Loretta — Reception
-LOCATION:46 Grosse St, Halifax, NS B3T 0M6
+LOCATION:House, 46 Grosse St, Halifax, NS B3T 0M6
 END:VEVENT
 END:VCALENDAR

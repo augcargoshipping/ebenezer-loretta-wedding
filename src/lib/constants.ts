@@ -17,34 +17,38 @@ export const WELCOME_CLOSE = "Welcome to the beginning of our"
 
 export const STORY = `A love written by God. Ebenezer and Loretta found in each other a quiet joy, a faithful friend, and a promise they are ready to keep.
 
+In the kindness of ordinary days, their love took root. They learned each other's laughter, held one another in prayer, and found a peace that feels like home.
+
 Two hearts. One prayer. And a love they thank God for every day.
 
-We cannot wait to celebrate with the people who have walked this journey with us.`
+Hand in hand, they come to this day with grateful hearts, ready for a life of faith, tenderness, and joy. We cannot wait to celebrate with the people who have walked this journey with us.`
 
 export const WEDDING_DATES = {
   display: "Sunday, 29 November 2026",
   short: "29 November 2026",
-  countdown: "2026-11-29T10:30:00-04:00",
+  countdown: "2026-11-29T09:30:00-04:00",
 } as const
 
 export const EVENTS = [
   {
     id: "ceremony",
     title: "White Wedding",
-    time: "10:30 AM ATL",
+    time: "9:30 AM",
     date: "Sunday, 29 November 2026",
-    venue: "Elevate Community Church",
-    place: "Scotiabank Theatre",
+    venue: "Scotiabank Theatre",
+    place: "",
+    note: "The program will be held in one of the halls upstairs inside the theatre. When you walk in, the stairs are on your right. Climb upstairs and you'll find us.",
     address: "190 Chain Lake Dr, Halifax, NS B3S 1C5",
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=190+Chain+Lake+Dr,+Halifax,+NS+B3S+1C5",
   },
   {
     id: "reception",
     title: "Reception",
-    time: "2:00 PM",
+    time: "11:00 AM",
     date: "Sunday, 29 November 2026",
-    venue: "The House",
+    venue: "House",
     place: "Family reception",
+    note: "",
     address: "46 Grosse St, Halifax, NS B3T 0M6",
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=46+Grosse+St,+Halifax,+NS+B3T+0M6",
   },
@@ -66,14 +70,14 @@ export const RSVP_CONTACTS = [
   },
   {
     name: "Daniel",
-    phone: "Message Ebenezer",
-    tel: "+14374300150",
+    phone: "902-880-6353",
+    tel: "+19028806353",
     message: "Hello, I would like to RSVP with Daniel for Ebenezer & Loretta's wedding.",
   },
   {
     name: "Solo",
-    phone: "Message Ebenezer",
-    tel: "+14374300150",
+    phone: "902-412-5805",
+    tel: "+19024125805",
     message: "Hello, I would like to RSVP with Solo for Ebenezer & Loretta's wedding.",
   },
 ] as const

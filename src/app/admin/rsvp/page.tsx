@@ -113,38 +113,38 @@ export default function RsvpAdminPage() {
   }
 
   return (
-    <main className="min-h-svh bg-[#f6eadc] px-4 py-8 text-[#2c241c]">
+    <main className="page-wash min-h-svh px-4 py-8">
       <div className="mx-auto max-w-3xl">
-        <Link href="/" className="inline-flex items-center gap-2 text-xs font-semibold tracking-[0.16em] text-[#8d6a52] uppercase">
+        <Link href="/" className="inline-flex items-center gap-2 text-xs font-semibold tracking-[0.16em] text-[#7d5a98] uppercase">
           <ArrowLeft className="h-4 w-4" />
           Back to the invitation
         </Link>
-        <p className="mt-6 text-[10px] font-semibold tracking-[0.28em] text-[#b8944a] uppercase">Guest replies</p>
-        <h1 className="serif mt-2 text-4xl text-[#1d2a3a]">{COUPLE.full}</h1>
+        <p className="mt-6 text-[10px] font-semibold tracking-[0.28em] text-[#7b3fa6] uppercase">Guest replies</p>
+        <h1 className="serif mt-2 text-4xl text-[#3d215c]">{COUPLE.full}</h1>
 
         {!authed ? (
-          <form onSubmit={handleLogin} className="mt-8 max-w-md rounded-3xl bg-[#f8efe3] p-6 shadow-[0_18px_40px_rgba(44,36,28,0.06)]">
-            <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-full text-[#b8944a]" style={{ border: "1px solid rgba(184,148,74,0.35)" }}>
+          <form onSubmit={handleLogin} className="mt-8 max-w-md rounded-3xl bg-[#faf8f6] p-6 shadow-[0_18px_40px_rgba(46,26,64,0.06)]">
+            <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-full text-[#7b3fa6]" style={{ border: "1px solid rgba(123,63,166,0.35)" }}>
               <Lock className="h-5 w-5" />
             </div>
-            <h2 className="serif text-2xl text-[#1d2a3a]">Sign in</h2>
-            <p className="mt-2 text-sm leading-relaxed text-[#6d6258]">Enter the owner password to read the replies.</p>
-            <label className="mt-5 block text-xs font-semibold tracking-[0.14em] text-[#8d6a52] uppercase">
+            <h2 className="serif text-2xl text-[#3d215c]">Sign in</h2>
+            <p className="mt-2 text-sm leading-relaxed text-[#6a5680]">Enter the owner password to read the replies.</p>
+            <label className="mt-5 block text-xs font-semibold tracking-[0.14em] text-[#7d5a98] uppercase">
               Password
               <input
                 type="password"
                 value={password}
                 onChange={(event) => setPassword(event.target.value)}
-                className="mt-2 w-full rounded-xl border border-[rgba(184,148,74,0.35)] bg-[#fbf6ee] px-3 py-3 text-base font-normal tracking-normal text-[#1d2a3a] normal-case"
+                className="mt-2 w-full rounded-xl border border-[rgba(123,63,166,0.35)] bg-[#faf8f6] px-3 py-3 text-base font-normal tracking-normal text-[#3d215c] normal-case"
                 autoComplete="current-password"
                 required
               />
             </label>
-            {error ? <p className="mt-3 text-sm text-[#8d4b3a]">{error}</p> : null}
+            {error ? <p className="mt-3 text-sm text-[#8a3a6e]">{error}</p> : null}
             <button
               type="submit"
               disabled={loading}
-              className="mt-5 w-full rounded-full bg-[#b8944a] px-4 py-3 text-xs font-semibold tracking-[0.16em] text-[#1d2a3a] uppercase"
+              className="mt-5 w-full rounded-full bg-[#7b3fa6] px-4 py-3 text-xs font-semibold tracking-[0.16em] text-[#fbf7ff] uppercase"
             >
               {loading ? "Signing in..." : "Open the list"}
             </button>
@@ -158,8 +158,8 @@ export default function RsvpAdminPage() {
                   setRefreshing(true)
                   void loadSubmissions().finally(() => setRefreshing(false))
                 }}
-                className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-semibold tracking-[0.12em] text-[#1d2a3a] uppercase"
-                style={{ border: "1px solid rgba(184,148,74,0.4)" }}
+                className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-semibold tracking-[0.12em] text-[#3d215c] uppercase"
+                style={{ border: "1px solid rgba(123,63,166,0.4)" }}
               >
                 <RefreshCw className={`h-3.5 w-3.5 ${refreshing ? "animate-spin" : ""}`} />
                 Refresh
@@ -168,7 +168,7 @@ export default function RsvpAdminPage() {
                 type="button"
                 onClick={handleExport}
                 disabled={submissions.length === 0}
-                className="inline-flex items-center gap-2 rounded-full bg-[#b8944a] px-4 py-2 text-xs font-semibold tracking-[0.12em] text-[#1d2a3a] uppercase disabled:opacity-40"
+                className="inline-flex items-center gap-2 rounded-full bg-[#7b3fa6] px-4 py-2 text-xs font-semibold tracking-[0.12em] text-[#fbf7ff] uppercase disabled:opacity-40"
               >
                 <Download className="h-3.5 w-3.5" />
                 Export
@@ -177,8 +177,8 @@ export default function RsvpAdminPage() {
                 type="button"
                 onClick={() => void handleClear()}
                 disabled={clearing || submissions.length === 0}
-                className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-semibold tracking-[0.12em] text-[#8d4b3a] uppercase disabled:opacity-40"
-                style={{ border: "1px solid rgba(141,75,58,0.35)" }}
+                className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-semibold tracking-[0.12em] text-[#8a3a6e] uppercase disabled:opacity-40"
+                style={{ border: "1px solid rgba(138,58,110,0.35)" }}
               >
                 <Trash2 className="h-3.5 w-3.5" />
                 Clear
@@ -186,33 +186,33 @@ export default function RsvpAdminPage() {
               <button
                 type="button"
                 onClick={() => void handleLogout()}
-                className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-semibold tracking-[0.12em] text-[#6d6258] uppercase sm:ml-auto"
+                className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-semibold tracking-[0.12em] text-[#6a5680] uppercase sm:ml-auto"
               >
                 <LogOut className="h-3.5 w-3.5" />
                 Sign out
               </button>
             </div>
 
-            <p className="mt-6 text-sm text-[#6d6258]">
+            <p className="mt-6 text-sm text-[#6a5680]">
               {submissions.length} {submissions.length === 1 ? "reply" : "replies"} · {coming} coming · {submissions.length - coming} unable to attend
             </p>
 
-            {error ? <p className="mt-3 text-sm text-[#8d4b3a]">{error}</p> : null}
+            {error ? <p className="mt-3 text-sm text-[#8a3a6e]">{error}</p> : null}
 
             {submissions.length === 0 ? (
-              <p className="serif mt-10 text-center text-2xl text-[#1d2a3a]">No replies yet</p>
+              <p className="serif mt-10 text-center text-2xl text-[#3d215c]">No replies yet</p>
             ) : (
               <ul className="mt-4 space-y-3">
                 {submissions.map((entry) => (
-                  <li key={entry.id} className="rounded-2xl bg-[#f8efe3] px-5 py-4">
+                  <li key={entry.id} className="rounded-2xl bg-[#faf8f6] px-5 py-4">
                     <div className="flex items-baseline justify-between gap-3">
-                      <p className="serif text-2xl text-[#1d2a3a]">{entry.name}</p>
-                      <p className="text-xs font-semibold tracking-[0.12em] text-[#b8944a] uppercase">
+                      <p className="serif text-2xl text-[#3d215c]">{entry.name}</p>
+                      <p className="text-xs font-semibold tracking-[0.12em] text-[#7b3fa6] uppercase">
                         {entry.attending ? "Attending" : "Unable"}
                       </p>
                     </div>
-                    {entry.message ? <p className="mt-2 text-sm leading-relaxed text-[#6d6258]">{entry.message}</p> : null}
-                    <p className="mt-2 text-[11px] tracking-[0.08em] text-[#a89480] uppercase">{formatDate(entry.createdAt)}</p>
+                    {entry.message ? <p className="mt-2 text-sm leading-relaxed text-[#6a5680]">{entry.message}</p> : null}
+                    <p className="mt-2 text-[11px] tracking-[0.08em] text-[#9a84ae] uppercase">{formatDate(entry.createdAt)}</p>
                   </li>
                 ))}
               </ul>
