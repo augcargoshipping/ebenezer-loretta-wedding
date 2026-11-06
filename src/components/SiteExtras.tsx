@@ -70,7 +70,22 @@ export function ScrollProgress() {
 export function MusicButton({ audible = true }: { audible?: boolean }) {
   const audioRef = useRef<HTMLAudioElement>(null)
   const pendingRef = useRef(false)
+  const fadeRef = useRef(0)
   const [isPlaying, setIsPlaying] = useState(false)
+
+  const fadeIn = useCallback(() => {
+    const audio = audioRef.current
+    if (!audio) return
+    window.cancelAnimationFrame(fadeRef.current)
+    const started = performance.now()
+    const from = audio.volume
+    const tick = (now: number) => {
+      const progress = Math.min(1, (now - started) / 650)
+      audio.volume = from + (1 - from) * progress
+      if (progress < 1) fadeRef.current = window.requestAnimationFrame(tick)
+    }
+    fadeRef.current = window.requestAnimationFrame(tick)
+  }, [])
 
   const play = useCallback(() => {
     const audio = audioRef.current
@@ -124,8 +139,8 @@ export function MusicButton({ audible = true }: { audible?: boolean }) {
     audio.addEventListener("ended", onEnded)
 
     const cue = () => {
-      audio.volume = 0
       play()
+      fadeIn()
     }
     window.addEventListener("invitation-cue", cue)
 
@@ -134,26 +149,17 @@ export function MusicButton({ audible = true }: { audible?: boolean }) {
       audio.removeEventListener("pause", onPause)
       audio.removeEventListener("ended", onEnded)
       window.removeEventListener("invitation-cue", cue)
+      window.cancelAnimationFrame(fadeRef.current)
       audio.pause()
     }
-  }, [play])
+  }, [fadeIn, play])
 
   useEffect(() => {
     const audio = audioRef.current
-    if (!audio || !audible) return
-
-    const started = performance.now()
-    let frame = 0
-    const tick = (now: number) => {
-      const progress = Math.max(0, Math.min(1, (now - started) / 900))
-      audio.volume = progress
-      if (progress < 1) frame = window.requestAnimationFrame(tick)
-    }
-    frame = window.requestAnimationFrame(tick)
-    if (audio.paused) play()
-
-    return () => window.cancelAnimationFrame(frame)
-  }, [audible, play])
+    if (!audio || !audible || !audio.paused) return
+    play()
+    fadeIn()
+  }, [audible, fadeIn, play])
 
   return (
     <>
