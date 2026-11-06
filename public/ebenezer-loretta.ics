@@ -4,7 +4,7 @@ PRODID:-//Ebenezer and Loretta//Wedding//EN
 BEGIN:VEVENT
 UID:ceremony@ebenezerandloretta
 DTSTAMP:20261029T000000Z
-DTSTART;TZID=America/Halifax:20261129T093000
+DTSTART;TZID=America/Halifax:20261129T090000
 DTEND;TZID=America/Halifax:20261129T110000
 SUMMARY:Ebenezer & Loretta — White Wedding
 LOCATION:Scotiabank Theatre, 190 Chain Lake Dr, Halifax, NS B3S 1C5

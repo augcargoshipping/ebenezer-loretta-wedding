@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useMemo, useRef, useState } from "react"
+import { useEffect, useMemo, useRef, useState, type ReactNode } from "react"
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion"
 import { Church, MapPin, Shirt, Sparkles } from "lucide-react"
 import {
@@ -24,9 +24,48 @@ import {
   ScrollProgress,
   SectionNav,
 } from "./SiteExtras"
-import { InvitationOpener } from "./InvitationOpener"
+import { InvitationOpener, SiteConfetti } from "./InvitationOpener"
 import { RsvpSection } from "./RsvpSection"
 import { Bells, Bouquet, Cake, Dove, Envelope, Flutes, HeartSeal, Rings, ScrollMotif } from "./WeddingMotifs"
+
+function Reveal({
+  children,
+  className = "",
+  delay = 0,
+}: {
+  children: ReactNode
+  className?: string
+  delay?: number
+}) {
+  const ref = useRef<HTMLDivElement>(null)
+  const reduced = useReducedMotion() ?? false
+  const [shown, setShown] = useState(reduced)
+
+  useEffect(() => {
+    if (reduced) {
+      setShown(true)
+      return
+    }
+    const node = ref.current
+    if (!node) return
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry?.isIntersecting) return
+        setShown(true)
+        observer.disconnect()
+      },
+      { threshold: 0.16, rootMargin: "0px 0px -6% 0px" },
+    )
+    observer.observe(node)
+    return () => observer.disconnect()
+  }, [reduced])
+
+  return (
+    <div ref={ref} className={`reveal${shown ? " is-in" : ""} ${className}`} style={{ animationDelay: `${delay}ms` }}>
+      {children}
+    </div>
+  )
+}
 
 function FooterName() {
   const tapCount = useRef(0)
@@ -98,6 +137,7 @@ export function WeddingSite() {
   })
   const bgY = useTransform(scrollYProgress, [0, 1], reduced ? [0, 0] : [0, 70])
   const [sealed, setSealed] = useState(true)
+  const [confetti, setConfetti] = useState(false)
   const count = useCountdown(WEDDING_DATES.countdown)
   const tiles = [
     { label: "Days", value: count.days },
@@ -107,8 +147,11 @@ export function WeddingSite() {
   ]
 
   return (
-    <main className="page-wash">
-      {sealed ? <InvitationOpener reduced={reduced} onDone={() => setSealed(false)} /> : null}
+    <main className={`page-wash${sealed ? "" : " is-revealed"}`}>
+      {sealed ? (
+        <InvitationOpener reduced={reduced} onCelebrate={() => setConfetti(true)} onDone={() => setSealed(false)} />
+      ) : null}
+      {confetti && !reduced ? <SiteConfetti onDone={() => setConfetti(false)} /> : null}
       <ScrollProgress />
       <SectionNav />
       <MusicButton audible={!sealed} />
@@ -159,10 +202,12 @@ export function WeddingSite() {
           <Dove />
         </ScrollMotif>
         <div className="relative z-10 mx-auto grid max-w-4xl items-center gap-10 md:grid-cols-2">
-          <div className="order-2 overflow-hidden rounded-[1.6rem] border border-[rgba(123,63,166,0.28)] shadow-[0_18px_40px_rgba(46,26,64,0.08)] md:order-1">
-            <img src={PHOTOS.story} alt={`${COUPLE.full}`} className="block h-auto w-full object-cover" />
-          </div>
-          <div className="order-1 text-center md:order-2 md:text-left">
+          <Reveal className="order-2 md:order-1" delay={80}>
+            <div className="overflow-hidden rounded-[1.6rem] border border-[rgba(123,63,166,0.28)] shadow-[0_18px_40px_rgba(46,26,64,0.08)]">
+              <img src={PHOTOS.story} alt={`${COUPLE.full}`} className="block h-auto w-full object-cover" />
+            </div>
+          </Reveal>
+          <Reveal className="order-1 text-center md:order-2 md:text-left">
             <div className="mb-3 flex justify-center md:justify-start">
               <ScrollMotif flow className="w-14 md:w-16" drift={16} spin={14}>
                 <Rings />
@@ -171,7 +216,7 @@ export function WeddingSite() {
             <p className="ornament text-[10px] uppercase">Our story</p>
             <h2 className="serif mt-3 text-4xl text-[#3d215c]">Written in prayer</h2>
             <div className="mt-8 space-y-4 text-base leading-relaxed text-[#6a5680] whitespace-pre-line">{STORY}</div>
-          </div>
+          </Reveal>
         </div>
       </section>
 
@@ -188,8 +233,9 @@ export function WeddingSite() {
           <p className="ornament text-center text-[10px] uppercase">The celebration</p>
           <h2 className="serif mt-3 text-center text-4xl text-[#3d215c]">Schedule</h2>
           <div className="mt-12 grid gap-6 md:grid-cols-2">
-            {EVENTS.map((event) => (
-              <article key={event.id} className="card-invite rounded-3xl p-8">
+            {EVENTS.map((event, index) => (
+              <Reveal key={event.id} delay={index * 90}>
+              <article className="card-invite h-full rounded-3xl p-8">
                 <div
                   className="flex h-12 w-12 items-center justify-center rounded-full"
                   style={{ border: "1px solid rgba(123,63,166,0.35)", color: "#7b3fa6" }}
@@ -223,13 +269,16 @@ export function WeddingSite() {
                   />
                 </div>
               </article>
+              </Reveal>
             ))}
           </div>
+          <Reveal>
           <div className="card-invite mx-auto mt-8 max-w-xl rounded-3xl p-6 text-center">
             <Shirt className="mx-auto h-5 w-5" style={{ color: "#7b3fa6" }} />
             <p className="mt-3 text-[11px] tracking-[0.2em] text-[#6a5680] uppercase">Dress code</p>
             <p className="serif mt-1 text-2xl text-[#3d215c]">{DRESS_CODE}</p>
           </div>
+          </Reveal>
           <AddToCalendar />
         </div>
       </section>
@@ -247,11 +296,13 @@ export function WeddingSite() {
           <p className="ornament text-[10px] uppercase">Standing with us</p>
           <h2 className="serif mt-3 text-4xl text-[#3d215c]">Wedding party</h2>
           <div className="mt-10 grid gap-6 sm:grid-cols-2">
-            {PARTY.map((person) => (
-              <div key={person.name} className="card-invite rounded-3xl px-6 py-8">
+            {PARTY.map((person, index) => (
+              <Reveal key={person.name} delay={index * 80}>
+              <div className="card-invite rounded-3xl px-6 py-8">
                 <p className="serif text-2xl text-[#3d215c]">{person.name}</p>
                 <p className="mt-1 text-xs tracking-[0.18em] text-[#6a5680] uppercase">{person.role}</p>
               </div>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -266,12 +317,12 @@ export function WeddingSite() {
         <ScrollMotif className="top-8 right-0 w-12 opacity-75 md:right-10 md:w-16" drift={-26} spin={12}>
           <Cake />
         </ScrollMotif>
-        <div className="relative z-10 mx-auto max-w-5xl text-center">
+        <Reveal className="relative z-10 mx-auto max-w-5xl text-center">
           <p className="ornament text-[10px] uppercase">Gallery</p>
           <h2 className="serif mt-3 text-4xl text-[#3d215c]">Our photographs</h2>
           <p className="mt-4 text-sm text-[#6a5680]">A few of our favorite frames.</p>
           <PhotoLightbox />
-        </div>
+        </Reveal>
       </section>
 
       <FloralBand flip />
@@ -283,7 +334,7 @@ export function WeddingSite() {
         <ScrollMotif className="right-1 bottom-4 w-12 opacity-75 md:right-12" drift={-20} spin={14}>
           <Rings />
         </ScrollMotif>
-        <div className="relative z-10 mx-auto max-w-xl text-center">
+        <Reveal className="relative z-10 mx-auto max-w-xl text-center">
           <h2 className="serif text-4xl text-[#3d215c]">Gifts</h2>
           <p className="mt-3 text-sm leading-relaxed text-[#6a5680]">
             Your presence is the gift. If you wish to bless us further, Interac e-Transfer is welcome.
@@ -293,7 +344,7 @@ export function WeddingSite() {
               <CopyEmail key={gift.email} email={gift.email} label={gift.label} />
             ))}
           </div>
-        </div>
+        </Reveal>
       </section>
 
       <RsvpSection />

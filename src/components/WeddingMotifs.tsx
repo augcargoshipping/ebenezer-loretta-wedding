@@ -1,6 +1,6 @@
 "use client"
 
-import { useRef, type ReactNode } from "react"
+import { useEffect, useRef, useState, type ReactNode } from "react"
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion"
 
 const stroke = {
@@ -24,14 +24,55 @@ export function ScrollMotif({
   spin?: number
   flow?: boolean
 }) {
-  const ref = useRef<HTMLDivElement>(null)
   const reduced = useReducedMotion() ?? false
+  const [mode, setMode] = useState<"scroll" | "drift" | "still">("scroll")
+
+  useEffect(() => {
+    if (reduced) {
+      setMode("still")
+      return
+    }
+    const query = window.matchMedia("(max-width: 767px)")
+    const apply = () => setMode(query.matches ? "drift" : "scroll")
+    apply()
+    query.addEventListener("change", apply)
+    return () => query.removeEventListener("change", apply)
+  }, [reduced])
+
+  if (mode !== "scroll") {
+    return (
+      <div
+        className={`pointer-events-none z-0 text-[#7b3fa6] ${flow ? "relative" : "absolute"} ${mode === "drift" ? "motif-drift" : ""} ${className ?? ""}`}
+        aria-hidden="true"
+      >
+        {children}
+      </div>
+    )
+  }
+
+  return <ScrollLinked className={className} drift={drift} spin={spin} flow={flow}>{children}</ScrollLinked>
+}
+
+function ScrollLinked({
+  className,
+  children,
+  drift,
+  spin,
+  flow,
+}: {
+  className?: string
+  children: ReactNode
+  drift: number
+  spin: number
+  flow: boolean
+}) {
+  const ref = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "end start"],
   })
-  const y = useTransform(scrollYProgress, [0, 1], reduced ? [0, 0] : [drift, -drift])
-  const rotate = useTransform(scrollYProgress, [0, 1], reduced ? [0, 0] : [-spin, spin])
+  const y = useTransform(scrollYProgress, [0, 1], [drift, -drift])
+  const rotate = useTransform(scrollYProgress, [0, 1], [-spin, spin])
 
   return (
     <motion.div

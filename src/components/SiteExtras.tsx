@@ -35,7 +35,7 @@ export function SectionNav() {
           : "pointer-events-none -translate-y-2 py-2 opacity-0 md:pointer-events-auto md:translate-y-0 md:bg-transparent md:py-3 md:opacity-100"
       }`}
     >
-      <div className="flex max-w-full gap-0.5 overflow-x-auto rounded-full bg-[rgba(250,248,246,0.96)] px-0.5 py-0.5 shadow-[0_6px_16px_rgba(46,26,64,0.08)] backdrop-blur-md md:gap-1 md:bg-transparent md:px-1 md:py-1 md:shadow-none md:backdrop-blur-none">
+      <div className="flex max-w-full gap-0.5 overflow-x-auto rounded-full bg-[rgba(250,248,246,0.96)] px-0.5 py-0.5 shadow-[0_6px_16px_rgba(46,26,64,0.08)] md:gap-1 md:bg-transparent md:px-1 md:py-1 md:shadow-none">
         {NAV.map((item) => (
           <a
             key={item.href}
@@ -203,9 +203,9 @@ export function AddToCalendar() {
   const google =
     "https://calendar.google.com/calendar/render?action=TEMPLATE&text=" +
     encodeURIComponent("Ebenezer & Loretta Wedding") +
-    "&dates=20261129T133000Z/20261130T000000Z" +
+    "&dates=20261129T130000Z/20261130T000000Z" +
     "&details=" +
-    encodeURIComponent("White Wedding at 9:30 AM at Scotiabank Theatre. The program is upstairs: when you walk in, the stairs are on your right. Reception at 11:00 AM at House.") +
+    encodeURIComponent("White Wedding at 9:00 AM at Scotiabank Theatre. The program is upstairs: when you walk in, the stairs are on your right. Reception at 11:00 AM at House.") +
     "&location=" +
     encodeURIComponent("190 Chain Lake Dr, Halifax, NS B3S 1C5")
   return (

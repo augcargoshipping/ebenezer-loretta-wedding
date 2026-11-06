@@ -26,14 +26,14 @@ Hand in hand, they come to this day with grateful hearts, ready for a life of fa
 export const WEDDING_DATES = {
   display: "Sunday, 29 November 2026",
   short: "29 November 2026",
-  countdown: "2026-11-29T09:30:00-04:00",
+  countdown: "2026-11-29T09:00:00-04:00",
 } as const
 
 export const EVENTS = [
   {
     id: "ceremony",
     title: "White Wedding",
-    time: "9:30 AM",
+    time: "9:00 AM",
     date: "Sunday, 29 November 2026",
     venue: "Scotiabank Theatre",
     place: "",

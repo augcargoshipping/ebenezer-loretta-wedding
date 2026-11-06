@@ -7,69 +7,54 @@ import { X } from "lucide-react"
 import { COUPLE, RSVP_CONTACTS, WEDDING_DATES } from "@/lib/constants"
 
 const SPLASH = [
-  { x: "-46vw", y: "-36vh", r: -140, d: 0, s: 54, c: "#c084fc", kind: "bloom" },
-  { x: "42vw", y: "-32vh", r: 110, d: 0.02, s: 48, c: "#e9d5ff", kind: "bloom" },
-  { x: "8vw", y: "-44vh", r: 30, d: 0.04, s: 36, c: "#a855f7", kind: "bloom" },
-  { x: "-18vw", y: "-28vh", r: -40, d: 0, s: 28, c: "#d8b4fe", kind: "petal" },
-  { x: "24vw", y: "-18vh", r: 70, d: 0.03, s: 32, c: "#c4b5fd", kind: "petal" },
-  { x: "-38vw", y: "-8vh", r: -90, d: 0.05, s: 44, c: "#f0abfc", kind: "bloom" },
-  { x: "40vw", y: "6vh", r: 130, d: 0.02, s: 40, c: "#a78bfa", kind: "bloom" },
-  { x: "-8vw", y: "34vh", r: 20, d: 0.06, s: 50, c: "#e879f9", kind: "bloom" },
-  { x: "16vw", y: "40vh", r: -60, d: 0.04, s: 30, c: "#ddd6fe", kind: "petal" },
-  { x: "-28vw", y: "22vh", r: 80, d: 0.01, s: 38, c: "#c084fc", kind: "bloom" },
-  { x: "32vw", y: "-40vh", r: -20, d: 0.07, s: 26, c: "#d8b4fe", kind: "petal" },
-  { x: "-48vw", y: "16vh", r: 150, d: 0.03, s: 34, c: "#9333ea", kind: "bloom" },
-  { x: "48vw", y: "24vh", r: -100, d: 0.05, s: 42, c: "#d98bff", kind: "bloom" },
-  { x: "0vw", y: "-16vh", r: 15, d: 0, s: 58, c: "#a855f7", kind: "bloom" },
-  { x: "-12vw", y: "8vh", r: -30, d: 0.02, s: 24, c: "#e9d5ff", kind: "petal" },
-  { x: "14vw", y: "-6vh", r: 45, d: 0.04, s: 22, c: "#f5d0fe", kind: "petal" },
-  { x: "-34vw", y: "-40vh", r: 100, d: 0.06, s: 30, c: "#c4b5fd", kind: "bloom" },
-  { x: "28vw", y: "32vh", r: -80, d: 0.03, s: 36, c: "#e879f9", kind: "bloom" },
-  { x: "-22vw", y: "40vh", r: 40, d: 0.08, s: 28, c: "#ddd6fe", kind: "petal" },
-  { x: "6vw", y: "18vh", r: -15, d: 0.01, s: 20, c: "#a78bfa", kind: "dot" },
-  { x: "-6vw", y: "-12vh", r: 25, d: 0.05, s: 18, c: "#f0abfc", kind: "dot" },
-  { x: "36vw", y: "-22vh", r: -50, d: 0.02, s: 22, c: "#e7b0ff", kind: "dot" },
-  { x: "-44vw", y: "32vh", r: 70, d: 0.07, s: 32, c: "#d8b4fe", kind: "petal" },
-  { x: "18vw", y: "-38vh", r: 90, d: 0.04, s: 26, c: "#c084fc", kind: "petal" },
-  { x: "-2vw", y: "42vh", r: -25, d: 0.06, s: 40, c: "#a855f7", kind: "bloom" },
-  { x: "44vw", y: "-8vh", r: 120, d: 0.05, s: 24, c: "#e9d5ff", kind: "petal" },
+  { x: "-34vw", y: "-28vh", r: -50, d: "0s", s: 22, c: "#ffffff", kind: "petal" },
+  { x: "32vw", y: "-24vh", r: 40, d: "0.04s", s: 18, c: "#f7f3ee", kind: "petal" },
+  { x: "4vw", y: "-36vh", r: 16, d: "0.02s", s: 28, c: "#f4ecff", kind: "bloom" },
+  { x: "-16vw", y: "-14vh", r: -24, d: "0.06s", s: 14, c: "#fffaf6", kind: "dot" },
+  { x: "18vw", y: "-10vh", r: 30, d: "0.03s", s: 16, c: "#e9d8ff", kind: "petal" },
+  { x: "-28vw", y: "6vh", r: -36, d: "0.08s", s: 24, c: "#efe4ff", kind: "bloom" },
+  { x: "30vw", y: "10vh", r: 48, d: "0.05s", s: 20, c: "#ffffff", kind: "petal" },
+  { x: "-6vw", y: "22vh", r: 12, d: "0.07s", s: 26, c: "#f8f5ff", kind: "bloom" },
+  { x: "12vw", y: "26vh", r: -20, d: "0.04s", s: 15, c: "#f7f3ee", kind: "petal" },
+  { x: "-22vw", y: "18vh", r: 34, d: "0.09s", s: 12, c: "#fffdfb", kind: "dot" },
+  { x: "24vw", y: "-32vh", r: -18, d: "0.06s", s: 18, c: "#e9d8ff", kind: "petal" },
+  { x: "-40vw", y: "-6vh", r: 60, d: "0.03s", s: 16, c: "#f4ecff", kind: "dot" },
+  { x: "40vw", y: "2vh", r: -44, d: "0.08s", s: 22, c: "#fffaf6", kind: "bloom" },
+  { x: "0vw", y: "-8vh", r: 8, d: "0s", s: 30, c: "#ffffff", kind: "bloom" },
+  { x: "-10vw", y: "8vh", r: -14, d: "0.05s", s: 13, c: "#efe4ff", kind: "dot" },
+  { x: "8vw", y: "-18vh", r: 22, d: "0.02s", s: 17, c: "#f7f3ee", kind: "petal" },
 ] as const
 
 function hasPhone(phone: string) {
   return /\d/.test(phone)
 }
 
-function SplashPiece({
-  piece,
-}: {
-  piece: (typeof SPLASH)[number]
-}) {
+function SplashPiece({ piece }: { piece: (typeof SPLASH)[number] }) {
   return (
-    <motion.span
-      className="rsvp-splash-piece"
-      style={{ width: piece.s, height: piece.kind === "dot" ? piece.s : piece.s * 1.35 }}
-      initial={{ x: 0, y: 0, rotate: 0, scale: 0.15, opacity: 0 }}
-      animate={{ x: piece.x, y: piece.y, rotate: piece.r, scale: 1, opacity: [0, 1, 1, 0] }}
-      transition={{ duration: 1.55, delay: piece.d, ease: [0.16, 1, 0.3, 1], times: [0, 0.12, 0.72, 1] }}
+    <span
+      className={`rsvp-splash-piece is-${piece.kind}`}
+      style={
+        {
+          "--x": piece.x,
+          "--y": piece.y,
+          "--r": `${piece.r}deg`,
+          "--d": piece.d,
+          "--s": `${piece.s}px`,
+          "--c": piece.c,
+        } as React.CSSProperties
+      }
       aria-hidden="true"
     >
-      {piece.kind === "dot" ? (
-        <span className="rsvp-splash-dot" style={{ background: piece.c }} />
-      ) : piece.kind === "bloom" ? (
-        <svg viewBox="0 0 32 32" className="h-full w-full">
+      {piece.kind === "bloom" ? (
+        <svg viewBox="0 0 32 32" className="rsvp-splash-bloom">
           <circle cx="16" cy="10" r="6" fill={piece.c} />
           <circle cx="23" cy="16" r="6" fill={piece.c} />
           <circle cx="16" cy="22" r="6" fill={piece.c} />
           <circle cx="9" cy="16" r="6" fill={piece.c} />
-          <circle cx="16" cy="16" r="3.2" fill="#7b3fa6" />
+          <circle cx="16" cy="16" r="3.2" fill="#ffffff" />
         </svg>
-      ) : (
-        <svg viewBox="0 0 20 28" className="h-full w-full">
-          <ellipse cx="10" cy="14" rx="7" ry="12" fill={piece.c} />
-          <ellipse cx="10" cy="15" rx="2" ry="8" fill="rgba(255,255,255,0.35)" />
-        </svg>
-      )}
-    </motion.span>
+      ) : null}
+    </span>
   )
 }
 
@@ -103,7 +88,7 @@ export function RsvpSection() {
 
   useEffect(() => {
     if (phase !== "burst") return
-    const id = window.setTimeout(() => setPhase("form"), 1100)
+    const id = window.setTimeout(() => setPhase("form"), 1280)
     return () => window.clearTimeout(id)
   }, [phase])
 
@@ -175,7 +160,14 @@ export function RsvpSection() {
               if (phase === "form" && event.target === event.currentTarget) close()
             }}
           >
-            {!reduced ? SPLASH.map((piece, index) => <SplashPiece key={index} piece={piece} />) : null}
+            {!reduced ? (
+              <div className="rsvp-burst" aria-hidden="true">
+                <span className="rsvp-splash-glow" />
+                {SPLASH.map((piece, index) => (
+                  <SplashPiece key={index} piece={piece} />
+                ))}
+              </div>
+            ) : null}
             {phase === "form" ? (
             <motion.div
               role="dialog"

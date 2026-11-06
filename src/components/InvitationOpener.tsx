@@ -6,42 +6,43 @@ import { COUPLE } from "@/lib/constants"
 const OPENER_VIDEO = "/video/gate-opener.mp4?v=2"
 const OPENER_POSTER = "/images/opener-poster.jpg?v=3"
 
-const CONFETTI_COLORS = [
-  "#ff4d6d",
-  "#ffd166",
-  "#06d6a0",
-  "#4cc9f0",
-  "#f72585",
-  "#ffe66d",
-  "#fffaf3",
-  "#ff9f1c",
-  "#c77dff",
-  "#80ed99",
-  "#ff6b6b",
-  "#48cae4",
-  "#f4a261",
-  "#e0aaff",
-  "#ff8fab",
-  "#fee440",
-]
+const CONFETTI_COLORS = ["#ffffff", "#fffdfb", "#f7f3ee", "#f4ecff", "#e9d8ff", "#f8f5ff", "#efe4ff", "#fffaf6"]
 const CONFETTI_KINDS = ["rect", "rect", "strip", "square", "dot"] as const
 
-const CONFETTI = Array.from({ length: 112 }, (_, index) => {
+function confettiPiece(index: number, reach: number) {
   const angle = (index * 2.399963) % (Math.PI * 2)
-  const speed = 12 + ((index * 17) % 26)
-  const lift = 8 + ((index * 11) % 14)
-  const x = Math.cos(angle) * speed * (0.72 + (index % 5) * 0.09)
-  const y = Math.sin(angle) * speed * 0.46 - lift
+  const speed = reach + ((index * 17) % 18)
+  const lift = 6 + ((index * 11) % 10)
+  const x = Math.cos(angle) * speed * (0.62 + (index % 5) * 0.08)
+  const y = Math.sin(angle) * speed * 0.42 - lift
   const kind = CONFETTI_KINDS[index % CONFETTI_KINDS.length]
-  const spin = (kind === "strip" ? 640 : 280) + ((index * 47) % 420)
+  const spin = (kind === "strip" ? 220 : 120) + ((index * 29) % 160)
   return {
     x: `${x.toFixed(2)}vw`,
     y: `${y.toFixed(2)}vh`,
-    fall: `${16 + (index % 9) * 4.5}vh`,
+    fall: `${10 + (index % 7) * 3}vh`,
     spin: `${index % 2 === 0 ? spin : -spin}deg`,
-    d: `${((index * 3) % 9) * 0.012}s`,
-    dur: `${1.15 + (index % 7) * 0.09}s`,
-    s: 3 + (index % 4),
+    d: `${(index % 8) * 0.028}s`,
+    dur: `${1.7 + (index % 5) * 0.12}s`,
+    s: 4 + (index % 3),
+    c: CONFETTI_COLORS[index % CONFETTI_COLORS.length],
+    kind,
+  }
+}
+
+const CONFETTI = Array.from({ length: 48 }, (_, index) => confettiPiece(index, 14))
+
+const LANDING = Array.from({ length: 16 }, (_, index) => {
+  const side = index % 2 === 0 ? -1 : 1
+  const x = side * (18 + (index % 5) * 5.2)
+  const y = -20 + (index % 8) * 7.5
+  const kind = CONFETTI_KINDS[index % CONFETTI_KINDS.length]
+  return {
+    x: `${x.toFixed(2)}vw`,
+    y: `${y.toFixed(2)}vh`,
+    spin: `${side * (24 + (index * 17) % 64)}deg`,
+    d: `${(index % 5) * 0.045}s`,
+    s: 7 + (index % 3) * 2,
     c: CONFETTI_COLORS[index % CONFETTI_COLORS.length],
     kind,
   }
@@ -51,12 +52,42 @@ function cueMusic() {
   window.dispatchEvent(new Event("invitation-cue"))
 }
 
+export function SiteConfetti({ onDone }: { onDone: () => void }) {
+  useEffect(() => {
+    const timer = window.setTimeout(onDone, 4600)
+    return () => window.clearTimeout(timer)
+  }, [onDone])
+
+  return (
+    <div className="site-confetti" aria-hidden="true">
+      {LANDING.map((piece, index) => (
+        <span
+          key={index}
+          className={`site-confetti-piece is-${piece.kind}`}
+          style={
+            {
+              "--x": piece.x,
+              "--y": piece.y,
+              "--spin": piece.spin,
+              "--d": piece.d,
+              "--s": `${piece.s}px`,
+              "--c": piece.c,
+            } as React.CSSProperties
+          }
+        />
+      ))}
+    </div>
+  )
+}
+
 export function InvitationOpener({
   reduced,
   onDone,
+  onCelebrate,
 }: {
   reduced: boolean
   onDone: () => void
+  onCelebrate?: () => void
 }) {
   const videoRef = useRef<HTMLVideoElement>(null)
   const revealTimer = useRef<number | null>(null)
@@ -113,13 +144,14 @@ export function InvitationOpener({
 
   useEffect(() => {
     if (phase !== "leaving") return
-    const timer = window.setTimeout(() => onDoneRef.current(), reduced ? 180 : 560)
+    const timer = window.setTimeout(() => onDoneRef.current(), reduced ? 180 : 920)
     return () => window.clearTimeout(timer)
   }, [phase, reduced])
 
   const start = () => {
     if (phaseRef.current !== "idle") return
     cueMusic()
+    if (!reduced) onCelebrate?.()
     if (reduced) {
       finish()
       return
