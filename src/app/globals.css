@@ -111,33 +111,32 @@ body {
   z-index: 12;
   display: flex;
   flex: 1 1 auto;
-  flex-direction: column;
-  align-items: center;
+  align-items: stretch;
   justify-content: flex-end;
   min-height: 0;
+  width: 100%;
   margin-top: 0.15rem;
+  padding-bottom: 0.85rem;
   pointer-events: none;
 }
 
 .hero-couple-shot {
   display: flex;
+  flex: 1 1 auto;
   align-items: flex-end;
   justify-content: center;
+  width: 100%;
   min-height: 0;
-  max-height: 100%;
-  flex: 0 1 auto;
 }
 
 .hero-couple img {
   display: block;
-  height: auto;
   width: auto;
+  height: auto;
+  max-width: min(100%, 36rem);
   max-height: 100%;
-  max-width: min(78vw, 24rem);
   object-fit: contain;
   object-position: bottom center;
-  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 90%, transparent 100%);
-  mask-image: linear-gradient(to bottom, #000 0%, #000 90%, transparent 100%);
 }
 
 @media (max-width: 767px) {
@@ -171,8 +170,16 @@ body {
     padding-bottom: 0;
   }
 
+  .hero-couple {
+    padding-bottom: 0.7rem;
+  }
+
   .hero-couple img {
-    max-width: min(82vw, 22rem);
+    max-width: min(104vw, 28rem);
+  }
+
+  .countdown-board {
+    bottom: 0.7rem;
   }
 
   .hero-date::before,
@@ -430,13 +437,16 @@ body {
 }
 
 .countdown-board {
-  position: relative;
-  z-index: 3;
+  position: absolute;
+  z-index: 4;
+  left: 50%;
+  bottom: 0.85rem;
   display: flex;
   flex: 0 0 auto;
   align-items: stretch;
   width: min(92vw, 20.75rem);
-  margin: 0.15rem 0 1.15rem;
+  margin: 0;
+  transform: translateX(-50%);
   padding: 0.12rem 0.35rem;
   border-radius: 999px;
   border: 1px solid rgba(154, 98, 192, 0.48);
@@ -492,12 +502,13 @@ body {
   }
 
   .hero-couple {
-    min-height: 34vh;
+    min-height: 42vh;
+    padding-bottom: 1rem;
   }
 
   .hero-couple img {
-    max-width: min(32vw, 22rem);
-    max-height: 32vh;
+    max-width: min(44vw, 34rem);
+    max-height: min(46vh, 100%);
   }
 
   .gallery-flow {
@@ -549,8 +560,9 @@ body {
   }
 
   .countdown-board {
+    bottom: 1rem;
     width: min(92vw, 28rem);
-    margin: 0.55rem 0 0.7rem;
+    margin: 0;
     padding: 0.2rem 0.7rem;
   }
 
