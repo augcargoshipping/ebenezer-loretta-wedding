@@ -136,8 +136,8 @@ body {
   max-width: min(78vw, 24rem);
   object-fit: contain;
   object-position: bottom center;
-  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 78%, transparent 100%);
-  mask-image: linear-gradient(to bottom, #000 0%, #000 78%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 90%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 0%, #000 90%, transparent 100%);
 }
 
 @media (max-width: 767px) {
@@ -214,8 +214,8 @@ body {
   flex-wrap: nowrap;
   align-items: baseline;
   justify-content: center;
-  gap: 0.35rem;
-  margin-top: 0.35rem;
+  gap: 0.45rem;
+  margin-top: 0.95rem;
   font-family: var(--font-display), Georgia, serif;
   font-size: clamp(2.05rem, 8.6vw, 5.1rem);
   font-style: italic;
@@ -238,9 +238,9 @@ body {
 }
 
 .hero-tagline {
-  margin-top: 0.95rem;
+  margin-top: 1.35rem;
   font-size: 1.9rem;
-  line-height: 1;
+  line-height: 1.2;
   color: #5a3d78;
 }
 
@@ -253,7 +253,7 @@ body {
 }
 
 .hero-forever {
-  margin-top: 0.55rem;
+  margin-top: 1.05rem;
   font-family: var(--font-cormorant), Georgia, serif;
   font-size: 1.06rem;
   font-style: italic;
@@ -272,7 +272,7 @@ body {
 }
 
 .hero-until {
-  margin-top: 0.5rem;
+  margin-top: 0.95rem;
   font-size: 1.2rem;
   line-height: 1;
   color: #7d5a98;
@@ -283,7 +283,7 @@ body {
   align-items: center;
   justify-content: center;
   gap: 0.55rem;
-  margin-top: 0.4rem;
+  margin-top: 1rem;
   font-family: var(--font-cormorant), Georgia, serif;
   font-size: 1.35rem;
   font-style: italic;
@@ -436,7 +436,7 @@ body {
   flex: 0 0 auto;
   align-items: stretch;
   width: min(92vw, 20.75rem);
-  margin: 0.8rem 0 0.35rem;
+  margin: 0.15rem 0 1.15rem;
   padding: 0.12rem 0.35rem;
   border-radius: 999px;
   border: 1px solid rgba(154, 98, 192, 0.48);
@@ -496,8 +496,8 @@ body {
   }
 
   .hero-couple img {
-    max-width: min(36vw, 26rem);
-    max-height: 46vh;
+    max-width: min(32vw, 22rem);
+    max-height: 32vh;
   }
 
   .gallery-flow {
@@ -509,8 +509,8 @@ body {
   }
 
   .hero-names {
-    gap: 0.55rem;
-    margin-top: 0.45rem;
+    gap: 0.7rem;
+    margin-top: 1.05rem;
     font-size: 5.35rem;
   }
 
@@ -519,7 +519,7 @@ body {
   }
 
   .hero-tagline {
-    margin-top: 1.15rem;
+    margin-top: 1.65rem;
     font-size: 2.9rem;
   }
 
@@ -530,7 +530,7 @@ body {
   }
 
   .hero-forever {
-    margin-top: 0.3rem;
+    margin-top: 1.2rem;
     font-size: 1.45rem;
   }
 
@@ -539,17 +539,18 @@ body {
   }
 
   .hero-date {
-    margin-top: 0.6rem;
+    margin-top: 1.15rem;
     font-size: 1.9rem;
   }
 
   .hero-until {
-    margin-top: 0.75rem;
+    margin-top: 1.15rem;
     font-size: 1.65rem;
   }
 
   .countdown-board {
     width: min(92vw, 28rem);
+    margin: 0.55rem 0 0.7rem;
     padding: 0.2rem 0.7rem;
   }
 
@@ -656,75 +657,88 @@ body {
   opacity: 1;
 }
 
-.opener-names {
+.opener-invite {
   position: absolute;
   z-index: 5;
   left: 50%;
-  top: 1.2%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-end;
-  width: 100%;
-  height: 32%;
+  top: 8.5%;
+  width: min(94%, 34rem);
   margin: 0;
-  padding: 0 0 0.2rem;
+  padding: 0 0.6rem;
   transform: translateX(-50%);
   pointer-events: none;
-  font-family: var(--font-display), Georgia, serif;
-  font-size: min(8.2vw, 2.05rem);
-  font-style: italic;
-  font-weight: 500;
-  line-height: 0.88;
-  letter-spacing: -0.03em;
-  color: #4c2a68;
   text-align: center;
-  text-shadow: 0 2px 16px rgba(255, 248, 255, 0.88);
+  text-shadow: 0 2px 18px rgba(255, 248, 255, 0.9);
 }
 
-.opener-names span {
+.opener-invite-line {
   display: block;
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-size: clamp(1.12rem, 4.55vw, 1.55rem);
+  font-style: italic;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: 0.025em;
+  color: #6a3d8a;
+  white-space: nowrap;
+}
+
+.opener-invite-line::after {
+  content: "";
+  display: block;
+  width: 2.6rem;
+  height: 1px;
+  margin: 0.55rem auto 0.5rem;
+  background: linear-gradient(90deg, transparent, rgba(122, 72, 168, 0.8), transparent);
+}
+
+.opener-invite-names {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.32rem;
+  font-family: var(--font-display), Georgia, serif;
+  font-size: clamp(1.7rem, 7.2vw, 2.45rem);
+  font-style: italic;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: #4c2a68;
   white-space: nowrap;
 }
 
 .opener-amp {
-  margin: -0.02em 0 -0.08em;
   font-family: var(--font-script), "Great Vibes", cursive;
-  font-size: 1.05em;
+  font-size: 0.78em;
   font-style: normal;
   font-weight: 400;
-  line-height: 0.62;
+  line-height: 1;
   letter-spacing: 0;
   color: #9a62c0;
 }
 
-.opener.is-playing .opener-names {
+.opener.is-playing .opener-invite {
   animation: opener-names-fade 0.4s ease 0.2s forwards;
 }
 
 @media (min-aspect-ratio: 4 / 5) {
-  .opener-names {
-    top: 36%;
-    flex-direction: row;
-    align-items: baseline;
-    justify-content: center;
-    gap: 0.4rem;
-    width: min(94%, 52rem);
-    height: auto;
-    padding: 0;
-    font-size: clamp(2.7rem, 6.4vw, 6.4rem);
-    line-height: 1;
-    transform: translate(-50%, -50%);
+  .opener-invite {
+    top: 24%;
+    width: min(92%, 46rem);
   }
 
-  .opener-names span {
-    display: inline;
+  .opener-invite-line {
+    font-size: clamp(1.45rem, 2.5vw, 2.15rem);
   }
 
-  .opener-amp {
-    margin: 0 0.04rem;
-    font-size: 0.72em;
-    line-height: 1;
+  .opener-invite-line::after {
+    width: 3.4rem;
+    margin: 0.7rem auto 0.65rem;
+  }
+
+  .opener-invite-names {
+    gap: 0.5rem;
+    font-size: clamp(2.8rem, 5.4vw, 5.4rem);
   }
 }
 

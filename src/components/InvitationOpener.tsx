@@ -176,10 +176,13 @@ export function InvitationOpener({
         }}
       />
       <div className="opener-tint" aria-hidden="true" />
-      <p className="opener-names">
-        <span>{COUPLE.groom}</span>
-        <span className="opener-amp">&</span>
-        <span>{COUPLE.bride}</span>
+      <p className="opener-invite">
+        <span className="opener-invite-line">You are specially invited by</span>
+        <span className="opener-invite-names">
+          <span>{COUPLE.groom}</span>
+          <span className="opener-amp">&</span>
+          <span>{COUPLE.bride}</span>
+        </span>
       </p>
       <button
         type="button"

@@ -138,6 +138,9 @@ export function WeddingSite() {
           <p className="script hero-until">Until we say I do</p>
         </div>
         <div className="hero-couple">
+          <div className="hero-couple-shot">
+            <img src={`${PHOTOS.heroCutout}?v=5`} alt="" />
+          </div>
           <div className="countdown-board">
             {tiles.map((item) => (
               <div key={item.label} className="countdown-cell">
@@ -147,9 +150,6 @@ export function WeddingSite() {
                 <p className="countdown-label">{item.label}</p>
               </div>
             ))}
-          </div>
-          <div className="hero-couple-shot">
-            <img src={`${PHOTOS.heroCutout}?v=5`} alt="" />
           </div>
         </div>
       </section>
