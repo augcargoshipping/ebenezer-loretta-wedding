@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react"
 import { COUPLE } from "@/lib/constants"
 
-const OPENER_VIDEO = "/video/gate-opener.mp4?v=3"
+const OPENER_VIDEO = "/video/gate-opener.mp4?v=4"
 const OPENER_POSTER = "/images/opener-poster.jpg"
 
 const CONFETTI_COLORS = [
@@ -83,7 +83,7 @@ export function InvitationOpener({
 
   useEffect(() => {
     if (phase !== "playing" || reduced) return
-    const timer = window.setTimeout(() => finish(), 8000)
+    const timer = window.setTimeout(() => finish(), 12000)
     return () => window.clearTimeout(timer)
   }, [phase, reduced])
 
@@ -114,7 +114,7 @@ export function InvitationOpener({
       "playing",
       () => {
         window.clearTimeout(stall)
-        const length = Number.isFinite(video.duration) && video.duration > 0 ? video.duration * 1000 + 150 : 3200
+        const length = Number.isFinite(video.duration) && video.duration > 0 ? video.duration * 1000 + 150 : 7000
         revealTimer.current = window.setTimeout(() => finish(), length)
       },
       { once: true },
@@ -142,7 +142,6 @@ export function InvitationOpener({
           if (phase !== "idle") finish()
         }}
       />
-      <div className="opener-tint" aria-hidden="true" />
       <button
         type="button"
         className="opener-stage"

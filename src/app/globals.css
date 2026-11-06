@@ -633,18 +633,6 @@ body {
   pointer-events: none;
 }
 
-.opener-tint {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  pointer-events: none;
-  background: linear-gradient(165deg, #d8b8f4 0%, #b07adf 46%, #8648c0 100%);
-  mix-blend-mode: color;
-  opacity: 0.8;
-  -webkit-mask-image: radial-gradient(ellipse 78% 62% at 50% 54%, transparent 0 28%, #000 62%);
-  mask-image: radial-gradient(ellipse 78% 62% at 50% 54%, transparent 0 28%, #000 62%);
-}
-
 .opener-video {
   z-index: 1;
   opacity: 0;
