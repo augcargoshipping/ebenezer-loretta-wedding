@@ -600,7 +600,7 @@ body {
 }
 
 .opener.is-leaving {
-  animation: opener-leave 0.55s ease forwards;
+  animation: opener-leave 1.05s ease forwards;
   pointer-events: none;
 }
 
@@ -650,18 +650,20 @@ body {
   transform: translateX(-50%);
   border: 0;
   background: transparent;
-  font-size: 0.68rem;
-  font-weight: 600;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
   color: #7d5a98;
 }
 
 .opener-hint {
-  bottom: 7.5%;
+  bottom: 10%;
+  padding: 0.15rem 1.35rem 0.35rem;
+  border-radius: 999px;
+  background: rgba(255, 252, 248, 0.82);
+  box-shadow: 0 8px 24px rgba(74, 38, 112, 0.12);
+  font-size: clamp(1.85rem, 7vw, 2.6rem);
+  line-height: 1.15;
+  color: #6a3d92;
+  white-space: nowrap;
   animation: opener-pulse 2.4s ease-in-out infinite;
-  color: #4a2670;
-  text-shadow: 0 1px 10px rgba(248, 240, 255, 0.9);
 }
 
 .opener.is-playing .opener-hint {
@@ -672,6 +674,11 @@ body {
   bottom: 1.4rem;
   z-index: 6;
   cursor: pointer;
+  background: transparent;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
   color: rgba(76, 42, 104, 0.72);
 }
 
