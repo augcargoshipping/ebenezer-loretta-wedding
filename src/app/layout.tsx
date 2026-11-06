@@ -1,32 +1,9 @@
 import type { Metadata } from "next"
-import { Cormorant_Garamond, Great_Vibes, Outfit, Playfair_Display } from "next/font/google"
 import { COUPLE, HASHTAG, WEDDING_DATES } from "@/lib/constants"
 import "./globals.css"
 
-const cormorant = Cormorant_Garamond({
-  variable: "--font-cormorant",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-})
-
-const script = Great_Vibes({
-  variable: "--font-script",
-  subsets: ["latin"],
-  weight: "400",
-})
-
-const display = Playfair_Display({
-  variable: "--font-display",
-  subsets: ["latin"],
-  weight: ["500", "600"],
-  style: ["italic"],
-})
-
-const outfit = Outfit({
-  variable: "--font-outfit",
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600"],
-})
+const fontHref =
+  "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&family=Outfit:wght@300;400;500;600&family=Playfair+Display:ital,wght@1,500;1,600&display=swap"
 
 export const metadata: Metadata = {
   title: `${COUPLE.full} | Wedding Invitation ${HASHTAG}`,
@@ -36,7 +13,12 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className={`${cormorant.variable} ${script.variable} ${outfit.variable} ${display.variable} antialiased`}>{children}</body>
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link href={fontHref} rel="stylesheet" />
+      </head>
+      <body className="antialiased">{children}</body>
     </html>
   )
 }

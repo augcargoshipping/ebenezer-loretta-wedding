@@ -10,6 +10,10 @@
   --navy: #3d215c;
   --ink: #2e1a40;
   --mute: #6a5680;
+  --font-cormorant: "Cormorant Garamond", Georgia, serif;
+  --font-script: "Great Vibes", cursive;
+  --font-outfit: "Outfit", system-ui, sans-serif;
+  --font-display: "Playfair Display", Georgia, serif;
   --page: radial-gradient(90% 42% at 8% -8%, #f8f2ff 0%, transparent 58%),
     radial-gradient(70% 36% at 100% 0%, #e7d4fb 0%, transparent 52%),
     linear-gradient(180deg, #f7f2ff 0%, #efe3fb 52%, #e6d4f8 100%);
